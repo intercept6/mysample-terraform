@@ -2,12 +2,18 @@ version: 2
 jobs:
   build:
     docker:
-      - image: debian:stretch
+      - image: hashicorp/terraform:0.11.10
     steps:
       - checkout
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: Terraform Init
+          command: terraform init
       - run:
-          name: Print the Current Time
-          command: date
+          name: Terraform Plan
+          command: terraform plan
+      - run:
+          name: Terraform Apply
+          command: terraform plan -auto-approve
+      - run:
+          name: Terraform Destroy
+          command: terraform plan -auto-approve
