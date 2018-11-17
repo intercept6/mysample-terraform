@@ -3,5 +3,6 @@ resource "aws_vpc" "main" {
 
   tags = {
       Name = "circle.ci"
+      Environment = "prod"
   }
 }

@@ -14,6 +14,30 @@ jobs:
       - run:
           name: Terraform Apply
           command: terraform apply -auto-approve
+    #  - run:
+    #      name: Terraform Destroy
+    #      command: terraform destroy -auto-approve
+  test:
+    docker:
+    - image: circleci/ruby:2.4-node-browsers
+    working_directory: ~/awsspec
+  steps:
+    - checkout
+    - run:
+        name: Bundle install
+        command: bundle install --path vendor/bundle
+    - run:
+        name: Test
+        command: bundle exec rake spec
+  destroy:
+    docker:
+      - image: hashicorp/terraform:0.11.10
+    steps:
+      - checkout
+      - run:
+          name: Terraform Init
+          command: terraform init
       - run:
           name: Terraform Destroy
           command: terraform destroy -auto-approve
+    

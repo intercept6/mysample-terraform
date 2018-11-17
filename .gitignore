@@ -10,3 +10,5 @@
 
 # direnv file
 .envrc
+
+.ruby-version
