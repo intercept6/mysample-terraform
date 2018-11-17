@@ -30,9 +30,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Change Directory
-          command: cd awsspec && pwd
-      - run:
           name: Install Bundler
           command: gem install bundler
       - run:
