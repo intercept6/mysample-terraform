@@ -20,6 +20,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Get Dir
+          command: ls
+          working_directory: ~/awsspec
+      - run:
           name: Bundle install
           command: bundle install --path vendor/bundle
           working_directory: ~/awsspec
