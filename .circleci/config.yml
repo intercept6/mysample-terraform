@@ -27,12 +27,11 @@ jobs:
           command: terraform apply -auto-approve
   test:
     <<: *terraform
-    working_directory: ~/project/awsspec/
     steps:
       - checkout
       - run:
-          name: Get Dir
-          command: ls
+          name: Change Directory
+          command: cd awsspec
       - run:
           name: Install Bundler
           command: gem install bundler
