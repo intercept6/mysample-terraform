@@ -1,8 +1,19 @@
 version: 2
+
+defaults: &terraform
+  working_directory: ~/project
+  docker:
+    - image: hashicorp/terraform:0.11.10
+
+ruby: &ruby
+  working_directory: ~/project
+  docker:
+    - image: circleci/ruby:2.4-node-browsers
+
+
 jobs:
   build:
-    docker:
-      - image: hashicorp/terraform:0.11.10
+    <<: *terraform
     steps:
       - checkout
       - run:
@@ -15,9 +26,8 @@ jobs:
           name: Terraform Apply
           command: terraform apply -auto-approve
   test:
-    docker:
-    - image: circleci/ruby:2.4-node-browsers
-    working_directory: ~/awsspec/
+    <<: *terraform
+    working_directory: ~/project/awsspec/
     steps:
       - checkout
       - run:
@@ -30,8 +40,7 @@ jobs:
           name: Test
           command: bundle exec rake spec
   destroy:
-    docker:
-      - image: hashicorp/terraform:0.11.10
+    <<: *terraform
     steps:
       - checkout
       - run:
