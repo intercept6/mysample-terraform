@@ -1,6 +1,6 @@
 require 'spec_helper'
  
-describe subnet('public1') do
+describe subnet('public1-subnet') do
   it { should exist }
   it { should be_available }
   it { should belong_to_vpc('circle.ci') }
