@@ -6,7 +6,7 @@ defaults: &terraform
     - image: hashicorp/terraform:0.11.10
 
 ruby: &ruby
-  working_directory: ~/project
+  working_directory: ~/project/
   docker:
     - image: circleci/ruby:2.4-node-browsers
 
@@ -38,9 +38,11 @@ jobs:
       - run:
           name: Bundle install
           command: bundle install --path vendor/bundle
+          working_directory: ~/project/awsspec
       - run:
           name: Test
           command: bundle exec rake spec
+          working_directory: ~/project/awsspec
   destroy:
     <<: *terraform
     steps:
