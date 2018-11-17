@@ -17,6 +17,7 @@ jobs:
   test:
     docker:
     - image: circleci/ruby:2.4-node-browsers
+    working_directory: ~/awsspec
     steps:
       - checkout
       - run:
