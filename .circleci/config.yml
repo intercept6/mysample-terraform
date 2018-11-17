@@ -34,6 +34,9 @@ jobs:
           name: Get Dir
           command: ls
       - run:
+          name: Install Bundler
+          command: gem install bundler
+      - run:
           name: Bundle install
           command: bundle install --path vendor/bundle
       - run:
